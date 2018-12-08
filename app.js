@@ -5,6 +5,7 @@ const encomenda = require('./routes/EncomendaRoute'); // Imports routes for the 
 const item = require('./routes/ItemRoute'); // Imports routes for the itens
 const app = express();
 const morgan = require('morgan');
+const cors= require('cors');
 
 var jwt = require('jsonwebtoken');
 var config = require('./config');
@@ -20,7 +21,7 @@ let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.set('secret',config.secret); //secret variable
-
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use('/encomenda', encomenda);
@@ -128,7 +129,7 @@ apiRoutes.use(function(req, res, next) {
   
     }
   });
-  let port = 8080;
+  let port = process.env.PORT || 8080;
 
   //Configuration
   //var port = process.env.PORT || 8080;//used to create, sign, and verify tokens
