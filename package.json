@@ -4,6 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "prestart": "next build",
+    "start": "node ./bin/www",
     "test": "mocha --timeout 10000"
   },
   "author": "",
