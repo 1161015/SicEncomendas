@@ -5,9 +5,9 @@ const EncomendaDTO = require('../dtos/EncomendaDTO');
 
 exports.item_post = function (req, res, next) {
     let validacaoProduto = Service.validarProduto(req.body.idProduto);
-   // let validacaoMaterialAcabamento = Service.validarMaterialAcabamento(req.body.idProduto, req.body.idMaterial, req.body.idAcabamento);
-    //let validacaoDimensoes = Service.validarDimensoes(req.body.altura, req.body.largura, req.body.profundidade);
-    Promise.all([validacaoProduto]).then(function (result) {
+    let validacaoMaterialAcabamento = Service.validarMaterialAcabamento(req.body.idProduto, req.body.idMaterial, req.body.idAcabamento);
+    let validacaoDimensoes = Service.validarDimensoes(req.body.idProduto, req.body.altura, req.body.largura, req.body.profundidade);
+    Promise.all([validacaoProduto, validacaoMaterialAcabamento, validacaoDimensoes]).then(function (result) {
         let new_item = new Item(
             {
                 name: req.body.name,
@@ -27,8 +27,9 @@ exports.item_post = function (req, res, next) {
             if (err) {
                 return next(err);
             }
-            //let itemDTO = new_item.toDTO();
-            res.send(new_item);
+
+           itemDTO = new_item.toDTO();
+            res.send(itemDTO);
         });
     }).catch (result => res.send(result));
 
@@ -42,9 +43,9 @@ exports.findAll = function (req, res, next) {
         }
     }).exec(function (err, itens) {
         if (err) return next(err);
-        /* let itensDTO = [];
+         let itensDTO = [];
         let i;
-        for (i = 0; i < itens.length; i++) {
+       /* for (i = 0; i < itens.length; i++) {
             itensDTO.push(itens[i].toDTO());
         }*/
         res.send(itens);

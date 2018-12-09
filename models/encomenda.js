@@ -1,15 +1,12 @@
 const mongoose     = require('mongoose');
 var idvalidator = require('mongoose-id-validator');
 const Schema       = mongoose.Schema;
-var encomendaDTO = require('../dtos/EncomendaDTO')
+var encomendaDTO = require('../dtos/EncomendaDTO');
 
-let EncomendaSchema   = new Schema({
+var EncomendaSchema = new Schema({
     name: {type: String, required: 'Nome obrigatório'},
     itens: [{ type: Schema.Types.ObjectId, ref: 'Item' , autopopulate:true}]
 });
-
-
-var encomenda = mongoose.model('Encomenda', EncomendaSchema);
 
 function encomendaDTO(encomenda){
     return {
@@ -17,6 +14,7 @@ function encomendaDTO(encomenda){
         itens: encomenda.itens
       }
   }
+ 
 
 EncomendaSchema.methods.toDTO = function(){
     let itensDTO = [];
@@ -31,6 +29,5 @@ EncomendaSchema.methods.toDTO = function(){
 
 EncomendaSchema.plugin(idvalidator);
 EncomendaSchema.plugin(require("mongoose-autopopulate"));
-
 
 module.exports = mongoose.model('Encomenda', EncomendaSchema);

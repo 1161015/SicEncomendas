@@ -16,7 +16,7 @@ let should = chai.should();
 
 chai.use(chaiHttp);
 
-/*describe('Test toDTO', function (){
+describe('Test toDTO', function (){
     it('it should return dto', function() {
         let item = new Item({name:"teste", idMaterial:1, idAcabamento:1, altura:1, largura:10, profundidade:10, unidade:10});
         let itens = [item];
@@ -25,7 +25,7 @@ chai.use(chaiHttp);
         let encomendaDTO = new encomendaDTO({name:"teste",itens: []});
         assert.equal(dto, encomendaDTO);
     })
-})*/
+})
 
 describe('Test calcularVolume', function(){
     it('it should return',function(){

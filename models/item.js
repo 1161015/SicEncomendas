@@ -19,12 +19,12 @@ var Item = mongoose.model('Item', ItemSchema);
 
 ItemSchema.methods.toDTO = function(){
     let itemPaiDTO;
-   /* if(this.itemPai!=null){
+    if(this.itemPai!=null){
         itemPaiDTO = this.itemPai.toDTO();
     }
     let dto =  new itemDTO(this.name, this.idProduto, this.idMaterial, this.idAcabamento
-        , this.altura, this.largura, this.profundidade, this.unidade, itemPaiDTO);*/
-        let dto = new itemDTO("x",1,1,1,10,10,10,1, itemPaiDTO);
+        , this.altura, this.largura, this.profundidade, this.unidade, itemPaiDTO);
+
 
     return dto;
 }
