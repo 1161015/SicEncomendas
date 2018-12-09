@@ -16,7 +16,7 @@ let should = chai.should();
 chai.use(chaiHttp);
 
 
-    /*describe('Test toDTO', function (){
+    describe('Test toDTO', function (){
         it('it should return dto', function() {
             let item = new Item("teste", 1, 1, 1, 10, 10, 10, 1);
             let dto = item.toDTO();
@@ -24,4 +24,4 @@ chai.use(chaiHttp);
             assert.equal(dto, itemDTO);
         })
     })
-    */
+    

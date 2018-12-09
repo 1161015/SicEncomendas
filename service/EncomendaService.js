@@ -1,13 +1,12 @@
 const Item = require('../models/Item');
 
-class encomendaService {
+class EncomendaService {
 
 	constructor() { }
 
-	validarObrigatoriedade(idItemPai) {
+	validacaoObrigatoriedade(idItemPai) {
 		const pedidoHTTP = require('request');
-		let urlPost = "https://sic20181111064858.azurewebsites.net/api/produto/obrigatoriedade";
-
+		let urlPost = "https://sicarqsi2018.azurewebsites.net/api/produto/obrigatoriedade/";
 		let idsFilhos = [];
 		let i;
 		Item.findById(idItemPai, function (err, itemPai) {
@@ -35,7 +34,7 @@ class encomendaService {
 
 	validarTaxaOcupacao(idItemPai) {
 		const pedidoHTTP = require('request');
-		let urlPost = "https://sic20181111064858.azurewebsites.net/api/produto/verificarTaxaOcupacao";
+		let urlPost = "https://sicarqsi2018.azurewebsites.net/api/produto/verificarTaxaOcupacao/";
 
 		let idsFilhos = [];
 		let i;
@@ -49,7 +48,8 @@ class encomendaService {
 			let args = {
 				data: {
 					"ProdutoPaiId": itemPai,
-					"Volume":volume
+					"ProdutosFilhosIds": idsFilhos,
+					"Volume": volume
 				},
 				headers: { "Content-Type": "application/json" }
 			}
@@ -62,7 +62,8 @@ class encomendaService {
 		});
 	}
 	
-	calcularVolume(idsFilhos){
+
+	calcularVolume(idsFilhos) {
 		var i = 0;
 		var altura = 0;
 		var largura = 0;
@@ -75,10 +76,10 @@ class encomendaService {
 			largura = element.largura;
 			profundidade = element.profundidade;
 			volume = altura * largura * profundidade;
-			volumeTotal +=volume;
+			volumeTotal += volume;
 		});
 		return volumeTotal;
 	}
 }
 
-module.exports = encomendaService;
+module.exports = new EncomendaService();
