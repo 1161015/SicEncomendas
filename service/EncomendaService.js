@@ -1,10 +1,9 @@
 const Item = require('../models/Item');
 
-class EncomendaService {
 
-	constructor() { }
+	//constructor() { }
 
-	validacaoObrigatoriedade(idItemPai) {
+	this.validacaoObrigatoriedade=function(idItemPai) {
 		const pedidoHTTP = require('request');
 		let urlPost = "https://sicarqsi2018.azurewebsites.net/api/produto/obrigatoriedade/";
 		let idsFilhos = [];
@@ -32,7 +31,7 @@ class EncomendaService {
 	};
 
 
-	validarTaxaOcupacao(idItemPai) {
+	this.validarTaxaOcupacao=function(idItemPai) {
 		const pedidoHTTP = require('request');
 		let urlPost = "https://sicarqsi2018.azurewebsites.net/api/produto/verificarTaxaOcupacao/";
 
@@ -63,7 +62,7 @@ class EncomendaService {
 	}
 	
 
-	calcularVolume(idsFilhos) {
+	this.calcularVolume=function(idsFilhos) {
 		var i = 0;
 		var altura = 0;
 		var largura = 0;
@@ -80,6 +79,5 @@ class EncomendaService {
 		});
 		return volumeTotal;
 	}
-}
 
-module.exports = new EncomendaService();
+module.exports =  EncomendaService();
