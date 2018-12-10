@@ -80,4 +80,4 @@ const Item = require('../models/Item');
 		return volumeTotal;
 	}
 
-module.exports =  EncomendaService();
+//module.exports =  EncomendaService();
